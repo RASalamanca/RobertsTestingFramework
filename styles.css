@@ -150,8 +150,8 @@ h3 {
 }
 
 .sub-section {
-    border-left: 1px solid var(--light-text);
-    padding: 0 0.25em;
+    border-left: 2px solid var(--light-text);
+    padding: 0 1em;
     margin-top: 1.5em;
 }
 
@@ -170,6 +170,8 @@ details[closed] {
 
 summary {
     background-color: var(--light-text);
+    cursor: pointer;
+    user-select: none;
 }
 
 .counter {
@@ -186,6 +188,10 @@ table, tr, td, th {
 th {
     color: var(--dark-background);
     background-color: var(--light-text);
+}
+
+caption {
+    font-weight: bold;
 }
 
 .hidden {
