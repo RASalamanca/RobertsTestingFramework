@@ -1,10 +1,10 @@
 # User Manual
 
 ## Testing a Function
-1. Open the `./testModules` folder and create a new `.js` file inside.
-You may name it however you like. We've named ours `exampleFunctionTests.js`. 
+1. Open the `./test_modules` folder and create a new `.js` file inside.
+You may name it however you like. We've named ours `example_function_tests.js`. 
 This file will be the test module and it will contain all the tests for that function. 
-2. Inside the file, import the RTF module `import { RTF } from '../lib/TestFramework.js';`
+2. Inside the file, import the RTF module `import { RTF } from '../lib/test_framework.js';`
 3. Either import or write  the function you want to test. In this example, we will be testing:
 ```
 function exampleFunction(a, b) {
@@ -33,14 +33,14 @@ RTF.testSubject(exampleFunction)
 .on(3, 2).out(5)
 .on(4, 4).out(8);
 ```
-9. Save the module and edit the file `./testResults.html`
+9. Save the module and edit the file `./results.html`
 10. Inside the body tag, add a script tag pointing to your test module. 
-`<script type="module" src="testModules/exampleFunctionTests.js"></script>`
-11. That's it! Just save and open `./testResults.html` on your browser to check out the results
+`<script type="module" src="testModules/example_function_tests.js"></script>`
+11. That's it! Just save and open `./results.html` on your browser to check out the results
 
 This is the full code of our example module for reference:
 ```
-import { RTF } from '../lib/TestFramework.js';
+import { RTF } from '../lib/test_framework.js';
 
 function exampleFunction(a, b) {
     return a + b;
@@ -51,7 +51,7 @@ RTF.testSubject(exampleFunction)
 .on(3, 2).out(5)
 .on(4, 4).out(8);
 ```
-A copy of said module, along side other example modules, are included on the directory `./testModules`. You may delete them and replace them with your own modules. Just remember to update `./testResults.html` every time you create or delete test modules.
+A copy of said module, along side other example modules, are included on the directory `./test_modules`. You may delete them and replace them with your own modules. Just remember to update `./results.html` every time you create or delete test modules.
 
 ---
 
@@ -131,11 +131,11 @@ RTF.testSubject(TestSubject)
 ```
 This test would create an object passing 1 to the class constructor, then invoke the `.addAndReturn()` method of said object, pass it the number 2, and check that both the method returned the number 3 and the object has a property named "value" with a value of 3.
 
-11. Once you finish writing your tests, save the module to the `./testModules` folder and add it as a script tag on `./testResults.html`. 
+11. Once you finish writing your tests, save the module to the `./test_modules` folder and add it as a script tag on `./results.html`. 
 
-For reference, this is the full code of the `exampleClassTests.js` file
+For reference, this is the full code of the `example_class_tests.js` file
 ```
-import { RTF } from '../lib/TestFramework.js';
+import { RTF } from '../lib/test_framework.js';
 
 class TestSubject {
     constructor(initialValue) {
