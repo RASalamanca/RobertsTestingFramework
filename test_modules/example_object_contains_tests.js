@@ -2,6 +2,12 @@ import { RTF } from '../lib/test_framework.js';
 import { objectContains } from '../lib/utility_functions.js';
 
 RTF.testSubject(objectContains)
+.on({}, {})
+.out(true)
+
+.on({}, {a: 1})
+.out(true)
+
 .on(
     {a: 1}, 
     {a: 1, b: 2}

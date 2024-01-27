@@ -1,32 +1,10 @@
 import { RTF } from '../lib/test_framework.js';
-
-function compareObject(obj1, obj2) {
-    let output = false;
-    
-    if(Object.keys(obj1).length !== Object.keys(obj2).length) {
-        return output;
-    }
-    
-    for(const property in obj1) {
-        if( !obj2.hasOwnProperty(property) ) {
-            break;
-        }
-        
-        if( typeof obj1[property] === 'object') {
-            output = compareObject(obj1[property], obj2[property]);
-        }else { 
-            output = (obj1[property] === obj2[property]); 
-        }
-        
-        if(!output) { 
-            break;
-        }
-    }
-    
-    return output;
-}
+import { compareObject } from '../lib/utility_functions.js';
 
 RTF.testSubject(compareObject)
+.on({}, {})
+.out(true)
+
 .on(
     {a: 1, b: 2}, 
     {a: 1, b: 2}
