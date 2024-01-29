@@ -111,7 +111,7 @@ RTF.testSubject(TestSubject)
 ```
 This would create an object with 0 as the constructor parameter, invoke the `.add()` method on said object, pass it the parameter 2, and test it against the specified object state.
 
-9. `.withParams()` and `.testMethod()` only have to be invoked once. If a previous test used it, subsequent tests will remember the previously specified constructor parameters and method. 
+9. `.withParams()`, `.saveObject()` and `.testMethod()` only have to be invoked once. If a previous test used it, subsequent tests will remember the previously specified constructor parameters and method. 
 
 This set of tests all use the same method and parameters.
 ```
@@ -122,7 +122,18 @@ RTF.testSubject(TestSubject)
 .on(4).state({value: 4}).out();
 ```
 
-10. Both object state and method output can be checked simulateneously, but each test must always end with `.out()`. 
+10. Methods sometimes require that other methods have been called first for them to affect the object state in any manner. Normally, the framework makes a new instance of the object for every test, but we can change that by using `.saveObject()`. 
+
+This set of tests all call the `.add()` method on the same object
+```
+RTF.testSubject(TestSubject)
+.testMethod('add').withParams(0).saveObject()
+.on(2).state({value: 2}).out()
+.on(3).state({value: 5}).out()
+.on(5).state({value: 10}).out();
+```
+
+11. Both object state and method output can be checked simulateneously, but each test must always end with `.out()`. 
  
 A test for the `.addAndReturn()` method would look like this:
 ```
@@ -131,7 +142,7 @@ RTF.testSubject(TestSubject)
 ```
 This test would create an object passing 1 to the class constructor, then invoke the `.addAndReturn()` method of said object, pass it the number 2, and check that both the method returned the number 3 and the object has a property named "value" with a value of 3.
 
-11. Once you finish writing your tests, save the module to the `./test_modules` folder and add it as a script tag on `./results.html`. 
+12. Once you finish writing your tests, save the module to the `./test_modules` folder and add it as a script tag on `./results.html`. 
 
 For reference, this is the full code of the `example_class_tests.js` file
 ```
@@ -154,12 +165,13 @@ class TestSubject {
         this.value += number;
         return this.value;
     }
+    
 }
 
 RTF.testSubject(TestSubject)
 .withParams(1).state({value: 1}).out()
 .withParams('a').state({value: "a"}).out()
-.withParams("fail").state({value: "suceed"}).out()
+.withParams("fail").state({value: "succeed"}).out()     //This test fails on purpose to showcase the UI 
 
 .testMethod('addOne').withParams(1).state({value: 2}).out()
 .testMethod('addOne').withParams(2).state({value: 3}).out()
@@ -171,7 +183,12 @@ RTF.testSubject(TestSubject)
 .on(3).state({value: 3}).out()
 .on(4).state({value: 4}).out()
 
-.withParams(1).testMethod('addAndReturn').on(2).state({value: 3}).out(3);
-```
+.withParams(0).saveObject()
+.on(2).state({value: 2}).out()
+.on(3).state({value: 5}).out()
+.on(5).state({value: 10}).out()
 
+.withParams(1).testMethod('addAndReturn')
+.on(2).state({value: 3}).out(3)
+```
 ---

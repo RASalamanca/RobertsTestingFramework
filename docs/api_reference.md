@@ -52,8 +52,11 @@ Loops through all tests on this list, runs them, compares the output to the expe
 > **Note:** *You will never call this on a test module.*
 
 # TestBuilder
+## `TestBuilder.saveObject()`
+Sets the save object flag on the test object to true. This makes it so that when running the tests, this object will not be reinstanciated. This is usefull for testing methods that deal with state changes caused by previously invked methods.
+
 ## `TestBuilder.withParams()`
-Creates an array with all input arguments, and stores it on the test object.
+Creates an array with all input arguments, and stores it on the test object. Calling this method also resets the the `saveObject` flag
 
 **Takes:** Any number of arguments of any type
 **Returns** This instance of the `TestBuilder` object

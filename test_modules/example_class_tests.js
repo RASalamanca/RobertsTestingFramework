@@ -17,6 +17,7 @@ class TestSubject {
         this.value += number;
         return this.value;
     }
+    
 }
 
 RTF.testSubject(TestSubject)
@@ -34,4 +35,10 @@ RTF.testSubject(TestSubject)
 .on(3).state({value: 3}).out()
 .on(4).state({value: 4}).out()
 
-.withParams(1).testMethod('addAndReturn').on(2).state({value: 3}).out(3);
+.withParams(0).saveObject()
+.on(2).state({value: 2}).out()
+.on(3).state({value: 5}).out()
+.on(5).state({value: 10}).out()
+
+.withParams(1).testMethod('addAndReturn')
+.on(2).state({value: 3}).out(3);
