@@ -87,6 +87,14 @@ Stores the expected object state on the test object, and marks it as a strict te
 
 > **Note:** *Normally, object checks only require that all the properties and values specified are in the object we are testing. That is to say, an object with properties in addition to the ones we are testing for would pass the check. This is not the case in strict mode. The object we are testing must be **EXACTLY** like the one we specify.*
 
+## `TestBuilder.stateIsNot()`
+Stores the expected object state on the test object, and marks it as a negative test. 
+
+**Takes:** An object representing an expected state of an object instanciated by the class we are testing
+**Returns** This instance of the `TestBuilder` object
+
+> **Note:** Negative tests are the same as a regular test, but the resulting pass/fail flag gets passed trough a NOT gate, so you get the negation of the result.
+
 ## `TestBuilder.out()`
 - Stores the expected output of the test on the test object. 
 - Builds the test object
@@ -102,3 +110,11 @@ Marks the output as a strict test, and calls `TestBuilder.out()` with whatever i
 **Returns** The parent `TestList` Object
 
 > **Note:** *Normally, object checks only require that all the properties and values specified are in the object we are testing. That is to say, an object with properties in addition to the ones we are testing for would pass the check. This is not the case in strict mode. The object we are testing must be **EXACTLY** like the one we specify.*
+
+## `TestBuilder.outNot()`
+Marks the output as a negative test, and calls `TestBuilder.out()` with whatever input we provided.
+
+**Takes:** A value or object representing an expected output of the function or method we are testing
+**Returns** The parent `TestList` Object
+
+> **Note:** Negative tests are the same as a regular test, but the resulting pass/fail flag gets passed trough a NOT gate, so you get the negation of the result.

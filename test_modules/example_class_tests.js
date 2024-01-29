@@ -41,4 +41,7 @@ RTF.testSubject(TestSubject)
 .on(5).state({value: 10}).out()
 
 .withParams(1).testMethod('addAndReturn')
-.on(2).state({value: 3}).out(3);
+.on(2).state({value: 3}).out(3)
+.on(3).stateIsNot({value: 5}).out(4)
+.on(4).state({value: 5}).outNot(2)
+.on(5).stateIsNot({salami: 'a'}).outNot('b');
